@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+    Contact.html
+    -------------
+    Contact page used for user feedback. The following elements are
+    targeted by the translation scripts in `js/ui.js`:
+    - Page title and subtitle (main h1 / p)
+    - Form labels and placeholders for `name`, `email`, `subject`, `message`
+    - Consent checkbox label and inline validation messages
+
+    Translation keys used: `contactTitle`, `contactSubtitle`, `contactName`,
+    `contactEmail`, `contactSubject`, `contactMessage`, `contactConsent`,
+    `contactSubmit`, and placeholder keys (`placeholderName`, etc.).
+  -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Wellness Wave</title>
+    <meta
+      name="description"
+      content="Get in touch with Wellness Wave. Share feedback, suggestions, or just say hello. We're here to listen."
+    />
+
+    <link rel="preload" href="images/Wave1.jpg" as="image" importance="high" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      .error-message {
+        color: #ffb3b3;
+        font-size: 0.9rem;
+        margin-top: 6px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: block;
+      }
+      .error-message.show {
+        opacity: 1;
+      }
+      .form-group.error input,
+      .form-group.error textarea {
+        border: 2px solid #ff6b6b;
+        background-color: rgba(255, 107, 107, 0.08);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV BAR -->
+    <nav>
+      <a href="index.html" class="logo" aria-label="Wellness Wave Home">
+        <img src="images/Wellness Wave Logo.png" alt="" class="logo-img" />
+        <span class="logo-text">Wellness Wave</span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" data-lang href="#">English</a>
+        <a class="nav-link" href="index.html#about">About</a>
+        <a class="nav-link" href="index.html#resources">Resources</a>
+        <a class="nav-link" href="index.html#terms">Terms</a>
+        <a class="nav-link" href="index.html#tips">Tips</a>
+        <a class="nav-link" href="Contact.html">Contact</a>
+      </div>
+      <button class="signup-btn" aria-label="Open signup modal">Sign Up</button>
+    </nav>
+
+    <!-- CONTACT PAGE -->
+    <main class="contact-page">
+      <div class="container">
+        <header class="contact-header">
+          <h1>Contact & Feedback</h1>
+          <p class="subtitle">We’d love to hear from you.</p>
+        </header>
+
+        <section class="contact-form-wrapper">
+          <form id="contactForm" class="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name"
+                >Name
+                <span class="required" aria-label="required">*</span></label
+              >
+              <input id="name" type="text" placeholder="Your name" required aria-describedby="nameError" />
+              <span class="error-message" id="nameError" role="alert" aria-live="assertive" aria-hidden="true"
+                >Please enter your name</span
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="email"
+                >Email <span class="optional">(optional)</span></label
+              >
+              <input id="email" type="email" placeholder="you@example.com" aria-describedby="emailError" />
+              <span class="error-message" id="emailError" role="alert" aria-live="assertive" aria-hidden="true"
+                >Please enter a valid email</span
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="subject"
+                >Subject
+                <span class="required" aria-label="required">*</span></label
+              >
+              <input
+                id="subject"
+                type="text"
+                placeholder="What’s this about?"
+                required
+                aria-describedby="subjectError"
+              />
+              <span class="error-message" id="subjectError" role="alert" aria-live="assertive" aria-hidden="true"
+                >Please enter a subject</span
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="message"
+                >Message
+                <span class="required" aria-label="required">*</span></label
+              >
+              <textarea
+                id="message"
+                rows="7"
+                placeholder="How can we help? We’re listening."
+                required
+                aria-describedby="messageError"
+              ></textarea>
+              <span class="error-message" id="messageError" role="alert" aria-live="assertive" aria-hidden="true"
+                >Please write a message</span
+              >
+            </div>
+
+            <div class="form-group consent-group">
+              <label class="checkbox-container">
+                <input type="checkbox" id="consent" required aria-describedby="consentError" />
+                <span class="checkmark" aria-hidden="true"></span>
+                I consent to using my email client and local storage for demo
+                purposes.
+              </label>
+              <span class="error-message" id="consentError" role="alert" aria-live="assertive" aria-hidden="true"
+                >You must consent to continue</span
+              >
+            </div>
+
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+
+          <p class="back-home"><a href="index.html">Back to Home</a></p>
+        </section>
+      </div>
+    </main>
+
+    <!-- SIGN UP MODAL -->
+    <div class="modal-overlay" id="signupModal" hidden>
+      <div
+        class="modal"
+        tabindex="-1"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="signupTitle"
+      >
+        <button class="modal-close" aria-label="Close signup modal">×</button>
+        <h3 id="signupTitle">Join the Wave</h3>
+        <p>Get gentle monthly tips and early access to new resources.</p>
+        <form id="signupForm">
+          <label class="visually-hidden" for="signupEmail">Email address</label>
+          <input
+            id="signupEmail"
+            type="email"
+            placeholder="Enter your email"
+            required
+            autocomplete="email"
+          />
+          <button type="submit">Keep Me Updated</button>
+        </form>
+        <p class="privacy-note">
+          We respect your privacy. Unsubscribe anytime.
+        </p>
+      </div>
+    </div>
+
+    <script src="js/ui.js" defer></script>
+
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          // Reset errors
+          // Reset errors and accessibility attributes
+          document
+            .querySelectorAll(".form-group")
+            .forEach((g) => g.classList.remove("error"));
+          document
+            .querySelectorAll(".error-message")
+            .forEach((m) => {
+              m.classList.remove("show");
+              m.setAttribute("aria-hidden", "true");
+            });
+          // remove aria-invalid from inputs
+          ["name", "email", "subject", "message", "consent"].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.removeAttribute("aria-invalid");
+          });
+
+          let hasError = false;
+
+          if (!this.name.value.trim()) {
+            showError("name");
+            hasError = true;
+          }
+          if (this.email.value && !/^\S+@\S+\.\S+$/.test(this.email.value)) {
+            showError("email");
+            hasError = true;
+          }
+          if (!this.subject.value.trim()) {
+            showError("subject");
+            hasError = true;
+          }
+          if (!this.message.value.trim()) {
+            showError("message");
+            hasError = true;
+          }
+          if (!this.consent.checked) {
+            showError("consent");
+            hasError = true;
+          }
+
+          if (hasError) {
+            e.preventDefault();
+            return;
+          }
+
+          // instantly open email client
+          e.preventDefault();
+          const recipient = "hello@wellnesswave.example";
+          const subject = encodeURIComponent(this.subject.value);
+          const body = encodeURIComponent(
+            `From: ${this.name.value}\n` +
+              `Email: ${this.email.value || "Not provided"}\n\n` +
+              this.message.value
+          );
+
+          window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+        });
+
+      function showError(field) {
+        const err = document.getElementById(`${field}Error`);
+        if (!err) return;
+        const group = err.parentElement;
+        group.classList.add("error");
+        err.classList.add("show");
+        err.setAttribute("aria-hidden", "false");
+        const input = document.getElementById(field);
+        if (input) input.setAttribute("aria-invalid", "true");
+        // Focus the first invalid field if nothing is focused yet
+        if (document.activeElement === document.body || document.activeElement === document.documentElement) {
+          try { input.focus(); } catch (e) {}
+        }
+      }
+    </script>
+  </body>
+</html>
